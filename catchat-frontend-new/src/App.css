@@ -1,0 +1,545 @@
+/* CatChat Styles - based on minimalist design with gold trim */
+
+/* Base Variables - Colors from CatChat logo */
+:root {
+  --navy-blue: #0A1B3F;
+  --purple: #6E45E2;
+  --light-purple: #8A70E8;
+  --gold: #D6B17D;
+  --gold-light: #E6D0AC;
+  --gold-dark: #B38D50;
+  --white: #FFFFFF;
+  --light-grey: #F5F5F5;
+  --grey-100: #F3F4F6;
+  --grey-200: #E5E7EB;
+  --grey-300: #D1D5DB;
+  --grey-400: #9CA3AF;
+  --grey-500: #6B7280;
+  --grey-600: #4B5563;
+  --grey-700: #374151;
+  --grey-800: #1F2937;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--grey-800);
+  background-color: var(--white);
+  line-height: 1.5;
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.content-container {
+  max-width: 64rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo styling */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.logo-image-wrapper {
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.logo-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.greeting {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--grey-800);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.subgreeting {
+  font-size: 1.25rem;
+  color: var(--grey-500);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/* Chat Display */
+.chat-display {
+  width: 100%;
+  max-width: 42rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.message-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.user-message .message-avatar {
+  background-color: var(--purple);
+}
+
+.bot-message .message-avatar {
+  background-color: var(--navy-blue);
+}
+
+.message-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-sender {
+  font-weight: 500;
+  color: var(--grey-800);
+}
+
+.message-mode {
+  font-size: 0.75rem;
+  color: var(--grey-500);
+}
+
+.message-content {
+  padding-left: 2.75rem;
+}
+
+.message-content p {
+  white-space: pre-line;
+}
+
+.code-block {
+  background-color: var(--grey-100);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-family: monospace;
+  margin-top: 0.5rem;
+  border-left: 3px solid var(--gold);
+}
+
+/* Input Area with Gold Trim */
+.input-container {
+  width: 100%;
+  max-width: 42rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* Gold trim effect */
+.gold-trim {
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 15px rgba(214, 177, 125, 0.2);
+}
+
+.gold-trim::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold));
+  border-radius: 0.75rem 0.75rem 0 0;
+  z-index: 1;
+}
+
+.input-area {
+  padding: 0.75rem 1rem;
+  background-color: var(--white);
+  position: relative;
+}
+
+.text-input {
+  width: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: 1rem;
+  color: var(--grey-800);
+  font-family: inherit;
+  line-height: 1.5;
+  min-height: 2.5rem;
+}
+
+.text-input::placeholder {
+  color: var(--grey-400);
+}
+
+.input-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid var(--grey-100);
+  background-color: var(--white);
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toolbar-button {
+  padding: 0.375rem;
+  color: var(--grey-400);
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar-button:hover {
+  color: var(--grey-600);
+}
+
+.toolbar-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.mode-button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--grey-600);
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.mode-button:hover {
+  background-color: var(--grey-100);
+}
+
+.mode-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: 0;
+  margin-top: 0.25rem;
+  width: 12rem;
+  background-color: var(--white);
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+  border: 1px solid var(--border-color);}
+
+/* Send button styling */
+.send-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gold);
+  color: var(--white);
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover {
+  background-color: var(--gold-dark);
+}
+
+.send-button:disabled {
+  background-color: var(--grey-300);
+  cursor: not-allowed;
+}
+
+.send-text {
+  margin: 0 0.25rem;
+}
+
+/* Loading indicator styles */
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.quantum-measurement {
+  position: relative;
+  width: 160px;
+  height: 120px;
+}
+
+.bloch-sphere {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 0;
+  left: 40px;
+}
+
+.sphere {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.7); /* Gold color */
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.sphere-outer {
+  animation: sphereRotate 6s infinite linear;
+}
+
+.sphere-inner {
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 15%;
+  border: 1px solid rgba(212, 175, 55, 0.9); /* Darker gold for inner circle */
+  animation: sphereRotateReverse 4s infinite linear;
+}
+
+.qubit-state {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #9b59b6; /* Purple color */
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(155, 89, 182, 0.8); /* Purple glow */
+  animation: statePulse 2s infinite alternate;
+  z-index: 2;
+}
+
+@keyframes sphereRotate {
+  0% { transform: rotateY(0deg) rotateX(20deg); }
+  100% { transform: rotateY(360deg) rotateX(20deg); }
+}
+
+@keyframes sphereRotateReverse {
+  0% { transform: rotateY(360deg) rotateX(-10deg); }
+  100% { transform: rotateY(0deg) rotateX(-10deg); }
+}
+
+@keyframes statePulse {
+  0% { 
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0.7;
+    box-shadow: 0 0 5px rgba(155, 89, 182, 0.5);
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(155, 89, 182, 1);
+  }
+}
+
+/* Make sure the content container has a fixed or min height */
+.content-container {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure the chat display doesn't expand unnecessarily during loading */
+.chat-display {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 60vh; /* Set a maximum height */
+}
+
+/* Add this class to properly style the button in loading state */
+.send-button.loading {
+  min-width: auto;
+  min-height: auto;
+  background-color: transparent; /* Remove background or set to match parent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem; /* Maintain consistent padding */
+}
+
+/* Also make sure the toolbar stays properly sized */
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  height: auto;
+  position: relative;
+}
+
+@keyframes loading-indicator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Auth0 Authentication Styles */
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.login-button, .logout-button {
+  padding: 8px 16px;
+  background-color: #FFD700;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover, .logout-button:hover {
+  background-color: #F4C430;
+}
+
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #FFD700;
+  border-radius: 8px;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+}
+
+/* User information styles */
+.user-info {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive adjustments (if needed) */
+@media (max-width: 768px) {
+  .logo-image-wrapper {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-image-wrapper {
+    width: 320px;
+    height: 320px;
+  }
+
+/* Guest badge styling */
+.guest-badge {
+  background-color: #8d8d8d;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Ensure logout button styling works for both logout and exit guest mode */
+.logout-button {
+  /* Keep your existing logout button styles */
+  cursor: pointer;
+}
+
+}

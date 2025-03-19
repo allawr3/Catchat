@@ -1,0 +1,151 @@
+:root {
+  --primary: #6200EA;
+  --secondary: #FFD700;
+  --dark: #121212;
+  --light: #FFFFFF;
+  --gray: #F5F5F5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+.left-panel {
+  flex: 1;
+  background: linear-gradient(135deg, #6200EA 0%, #B388FF 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.right-panel {
+  flex: 1;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.login-form {
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.logo {
+  width: 160px; /* Increased size */
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.login-btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.login-btn.signup {
+  background-color: var(--secondary);
+  color: var(--dark);
+}
+
+.login-btn.signup:hover {
+  background-color: #E5C100;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.login-btn.login {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+.login-btn.login:hover {
+  background-color: #4A00D1;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Guest button styles */
+.login-btn.guest {
+  background-color: #8d8d8d; /* Grey for guest access */
+  color: white;
+  border: none;
+  margin-top: 10px; /* Add some spacing from the login button */
+}
+
+.login-btn.guest:hover {
+  background-color: #777777; /* Darker grey on hover */
+}
+
+.features {
+  margin-top: 3rem;
+  text-align: left;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.feature-icon {
+  background: rgba(255,255,255,0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .left-panel {
+    flex: 0 0 40%;
+  }
+}

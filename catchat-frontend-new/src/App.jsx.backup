@@ -1,0 +1,203 @@
+import { useState } from 'react';
+import './App.css';
+import ChatInput from './components/ChatInput';
+import ActionButtons from './components/ActionButtons';
+import Toast from './components/Toast';
+import Footer from './components/Footer';
+import ChatDisplay from './components/ChatDisplay';
+
+function App() {
+  const [currentMode, setCurrentMode] = useState('quantum'); // 'quantum' or 'standard'
+  const [isLoading, setIsLoading] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [toast, setToast] = useState({ show: false, message: '' });
+
+  // Show toast notification
+  const showToast = (message, duration = 3000) => {
+    setToast({ show: true, message });
+
+    setTimeout(() => {
+      setToast({ show: false, message: '' });
+    }, duration);
+  };
+
+  // Send a message to the backend
+  const sendMessage = async (message) => {
+    if (isLoading) return;
+
+    // For standard mode, don't send empty messages
+    if (!message && currentMode === 'standard') {
+      showToast('Please enter a message');
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+
+      // Prepare the request body based on the mode
+      const requestBody = {
+        message: currentMode === 'standard' ? message : null,
+        mode: currentMode,
+        quantum_computer: 'Rigetti',
+        qubits: 8
+      };
+
+      // Add user message to the chat (only in standard mode)
+      if (currentMode === 'standard' && message) {
+        setMessages(prev => [...prev, {
+          type: 'user',
+          content: message
+        }]);
+      }
+
+      // Call the API
+      const response = await fetch('http://82.29.153.141:8000/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Add bot response to the chat
+      setMessages(prev => [...prev, {
+        type: 'bot',
+        content: data.response,
+        mode: currentMode
+      }]);
+
+    } catch (error) {
+      console.error('Error:', error);
+      showToast('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Generate a quantum thought (no input required)
+  const generateQuantumThought = async () => {
+    await sendMessage(null);
+  };
+
+  // Mock function to simulate analyzing Bitcoin data
+  const analyzeBitcoinData = async () => {
+    setIsLoading(true);
+
+    // Simulate API call delay
+    setTimeout(() => {
+      const analysis = "Bitcoin entropy analysis complete. Detected patterns in nonce distribution suggest possible opportunities.";
+      setMessages(prev => [...prev, {
+        type: 'bot',
+        content: analysis,
+        mode: 'quantum'
+      }]);
+
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  // Mock function to simulate code generation
+  const generateCode = async () => {
+    setIsLoading(true);
+
+    // Simulate API call delay
+    setTimeout(() => {
+      const code = `
+  // Quantum-inspired random number generator
+  function quantumRNG(min, max) {
+    // Simulate quantum entropy source
+    const now = new Date().getTime();
+    const entropy = Math.sin(now) * 10000;
+
+    // Apply quantum-like transformations
+    const normalizedEntropy = Math.abs((entropy - Math.floor(entropy)));
+
+    // Scale to desired range
+    return Math.floor(normalizedEntropy * (max - min + 1)) + min;
+  }
+
+  // Example usage for Bitcoin nonce generation
+  function generateNonce() {
+    return quantumRNG(0, 0xFFFFFFFF);
+  }
+      `;
+
+      setMessages(prev => [...prev, {
+        type: 'bot',
+        content: code,
+        isCode: true,
+        mode: 'standard'
+      }]);
+
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  // Get time of day for greeting
+  const getTimeOfDay = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'morning';
+    if (hour < 18) return 'afternoon';
+    return 'evening';
+  };
+
+  return (
+    <div className="app-container">
+      <main className="main-content">
+        <div className="content-container">
+          {/* Logo */}
+          <div className="logo-container">
+            <div className="logo-image-wrapper">
+              <img
+                src="https://i.postimg.cc/1nxVChRG/DALL-E-2025-03-02-13-50-37-A-minimalist-professional-logo-for-Cat-C"
+                alt="CatChat Logo"
+                className="logo-image"
+              />
+            </div>
+          </div>
+
+          {/* Welcome Message */}
+          <h2 className="greeting">Good {getTimeOfDay()}, User.</h2>
+          <p className="subgreeting">How can I help you today?</p>
+
+          {/* Chat Display */}
+          {messages.length > 0 && (
+            <ChatDisplay messages={messages} />
+          )}
+
+          {/* Input Box */}
+          <ChatInput
+            onSubmit={sendMessage}
+            isLoading={isLoading}
+            currentMode={currentMode}
+            setCurrentMode={setCurrentMode}
+            showToast={showToast}
+          />
+
+          {/* Action Buttons */}
+          <ActionButtons
+            isLoading={isLoading}
+            onGenerateQuantumThought={generateQuantumThought}
+            onAnalyzeBitcoinData={analyzeBitcoinData}
+            onGenerateCode={generateCode}
+          />
+        </div>
+      </main>
+
+      {/* Toast Notification */}
+      <Toast message={toast.message} show={toast.show} />
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+

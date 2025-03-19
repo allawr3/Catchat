@@ -1,0 +1,70 @@
+.chat-display {
+  width: 100%;
+  max-width: 42rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-right: 1rem 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+.chat-display::-webkit-scrollbar {
+  width: 6px;
+}
+
+.message-container {
+  display: flex;
+  width: 100%;
+  padding: 0 0.5rem;
+}
+
+.user-container {
+  justify-content: flex-end;
+}
+
+.bot-container {
+  justify-content: flex-start;
+}
+
+.message {
+  max-width: 80%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  word-wrap: break-word; /* Ensure text wrapping */
+  overflow-wrap: break-word; /* Modern browsers */
+}
+
+.user-message {
+  background-color: var(--navy-blue);
+  color: var(--white);
+}
+
+.bot-message {
+  background-color: var(--light-grey);
+  color: var(--grey-800);
+  border: 1px solid var(--grey-200);
+}
+
+/* Custom scrollbar */
+.chat-display::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.chat-display::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-display::-webkit-scrollbar-thumb {
+  background-color: var(--grey-300);
+  border-radius: 9999px;
+}
+
+.chat-display::-webkit-scrollbar-thumb:hover {
+  background-color: var(--grey-400);
+}
