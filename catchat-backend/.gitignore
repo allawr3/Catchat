@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+venv/
+.env
+*.log
+*.backup.*
+*.original.backup
+*.save
+*.mp3
+test_tts_output.mp3
